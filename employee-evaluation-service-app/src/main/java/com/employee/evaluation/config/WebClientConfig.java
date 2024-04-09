@@ -1,4 +1,4 @@
-package com.employee.evaluation.configuration;
+package com.employee.evaluation.config;
 
 
 import org.springframework.beans.factory.annotation.Value;
