@@ -2,7 +2,7 @@ package com.employee.evaluation.controller;
 
 
 import com.employee.evaluation.dto.response.external.ExternalUsers;
-import com.employee.evaluation.integration.ExternalService;
+import com.employee.evaluation.services.integrations.ExternalService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

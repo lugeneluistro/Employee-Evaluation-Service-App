@@ -1,4 +1,4 @@
-package com.employee.evaluation.integration;
+package com.employee.evaluation.services.integrations;
 
 
 import com.employee.evaluation.dto.response.external.ExternalUsers;
@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 /**
  * The purpose of this class is to have template on calling external api using webclient
