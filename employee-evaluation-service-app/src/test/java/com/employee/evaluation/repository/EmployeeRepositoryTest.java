@@ -1,9 +1,8 @@
 package com.employee.evaluation.repository;
 
 
+import com.employee.evaluation.Utils;
 import com.employee.evaluation.entity.Employee;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
 import org.junit.jupiter.api.Assertions;
@@ -23,10 +22,6 @@ public class EmployeeRepositoryTest {
     @Autowired
     private IEmployeeRepository employeeRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    private final String LOG_PREFIX = "---Unit Test---";
     private final Long supervisorId = 100023L;
 
 
@@ -36,7 +31,7 @@ public class EmployeeRepositoryTest {
         Optional<Employee> employee = employeeRepository.findById(supervisorId);
 
         Assertions.assertTrue(employee.isPresent());
-        log.info(LOG_PREFIX.concat("Email: {}"), employee.get().getEmail());
+        log.info(Utils.LOG_PREFIX.concat("Email: {}"), employee.get().getEmail());
         Assertions.assertFalse(employee.get().getSubordinates().isEmpty());
     }
 
@@ -52,7 +47,7 @@ public class EmployeeRepositoryTest {
         Assertions.assertFalse(Hibernate.isInitialized(subordinates));
 
         // Trigger lazy loading by accessing the collection
-        log.info(LOG_PREFIX.concat("Employee {} subordinates count: {}"), supervisorId, subordinates.size());
+        log.info(Utils.LOG_PREFIX.concat("Employee {} subordinates count: {}"), supervisorId, subordinates.size());
 
         Assertions.assertTrue(Hibernate.isInitialized(subordinates));
     }
@@ -74,7 +69,7 @@ public class EmployeeRepositoryTest {
 
         employee.get().getSubordinates().forEach(emp -> {
             Assertions.assertEquals(emp.getSupervisor().getEmployeeId(), supervisorId);
-            log.info(LOG_PREFIX.concat("{} {} {}"), emp.getEmployeeId(), emp.getFirstName(), emp.getLastName());
+            log.info(Utils.LOG_PREFIX.concat("{} {} {}"), emp.getEmployeeId(), emp.getFirstName(), emp.getLastName());
         });
     }
 }
